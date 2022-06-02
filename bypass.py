@@ -1,5 +1,6 @@
 # The O-Ring Bypass, Automated
 # by Oyot Onyenwe
+# v1.1.0
 
 import tkinter as tk
 import subprocess as sp
