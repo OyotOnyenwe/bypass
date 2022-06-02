@@ -1,19 +1,24 @@
 # The O-Ring Bypass, Automated
 # by Oyot Onyenwe
-# Version 1.0.0
 
 import tkinter as tk
 import subprocess as sp
 from time import sleep
 
+def nameget():
+    devlist = str(sp.run(["networksetup", "-listallhardwareports"], stdout = sp.PIPE))
+    i1 = devlist.find("Wi-Fi") + 15
+    cutlist = devlist[i1:]
+    i2 = cutlist.find("Ethernet") - 2
+    name = cutlist[:i2]
+    return name
+
 def bypass():
-    
-    name = "en0"
+    name = nameget()
     sp.run(["networksetup", "-setairportpower", name, "off"])
     sleep(1)
     sp.run(["networksetup", "-setairportpower", name, "on"])
     sleep(1)
-
 
 window = tk.Tk()
 window.title("The O-Ring Bypasser")
